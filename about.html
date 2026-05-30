@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me — Clementina Chukwu · Datara.Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+.about-body p {
+  font-size: 15px;
+  color: #A0B4CC;
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+.about-body p span.highlight { color: var(--cyan); font-weight: 500; }
+
+.blockquote {
+  border-left: 3px solid var(--cyan);
+  padding: 16px 20px;
+  background: rgba(0,204,255,0.04);
+  border-radius: 0 8px 8px 0;
+  font-size: 15px;
+  font-style: italic;
+  color: #A0B4CC;
+  margin: 24px 0;
+}
+
+.about-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.info-card-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.info-card-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.info-card-sub {
+  font-size: 12px;
+  color: var(--teal);
+}
+
+.info-card.accent { border-color: rgba(0,204,255,0.3); }
+.info-card.accent .info-card-value { color: var(--cyan); }
+
+.tool-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tool-badge {
+  font-size: 12px;
+  padding: 5px 12px;
+  background: rgba(0,204,255,0.08);
+  color: var(--cyan);
+  border: 1px solid rgba(0,204,255,0.15);
+  border-radius: 20px;
+}
+
+/* Highlights grid */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.hl-box {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.hl-icon { font-size: 24px; margin-bottom: 10px; }
+.hl-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 4px; }
+.hl-value { font-size: 13px; font-weight: 500; color: var(--cyan); }
+
+/* Journey timeline */
+.timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 64px; }
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  position: relative;
+  padding-bottom: 36px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 150px;
+  top: 10px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item:last-child::before { display: none; }
+
+.timeline-dot {
+  position: absolute;
+  left: 143px;
+  top: 4px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 3px solid var(--bg);
+  z-index: 1;
+}
+
+.timeline-year {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cyan);
+  padding-top: 2px;
+  text-align: right;
+}
+
+.timeline-content { padding-left: 32px; }
+.timeline-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.timeline-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .highlights-grid { grid-template-columns: repeat(2, 1fr); }
+  .timeline-item { grid-template-columns: 80px 1fr; }
+  .timeline-item::before { left: 106px; }
+  .timeline-dot { left: 99px; }
+  .timeline-content { padding-left: 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="company.html">Company</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="btn-hire">Hire Me</a>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-orb" style="width:400px;height:400px;background:rgba(0,204,255,0.06);top:-100px;right:-80px;filter:blur(80px);"></div>
+  <div class="page-header-content">
+    <p class="page-eyebrow">About Me</p>
+    <h1 class="page-title">Clementina <span class="cyan">Chukwu</span></h1>
+    <p class="page-subtitle">Data Analyst · Dashboard Builder · Oil &amp; Gas Specialist · Lagos, Nigeria</p>
+  </div>
+</header>
+
+<main class="page-body">
+
+  <!-- Quick Stats -->
+  <div class="highlights-grid reveal">
+    <div class="hl-box">
+      <div class="hl-icon">📍</div>
+      <div class="hl-label">Based In</div>
+      <div class="hl-value">Lagos, Nigeria</div>
+    </div>
+    <div class="hl-box">
+      <div class="hl-icon">🌍</div>
+      <div class="hl-label">Availability</div>
+      <div class="hl-value">Remote Worldwide</div>
+    </div>
+    <div class="hl-box">
+      <div class="hl-icon">🇦🇪</div>
+      <div class="hl-label">Current Client</div>
+      <div class="hl-value">Abu Dhabi, UAE</div>
+    </div>
+    <div class="hl-box">
+      <div class="hl-icon">🛢️</div>
+      <div class="hl-label">Primary Sector</div>
+      <div class="hl-value">Oil &amp; Gas / Energy</div>
+    </div>
+  </div>
+
+  <!-- Main About -->
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I'm <span class="highlight">Clementina Chukwu</span>, a data analyst based in Lagos, Nigeria, with a growing specialisation in the oil, gas and energy sector. I build interactive dashboards and performance scorecards that turn raw operational data into insights that actually change decisions.</p>
+
+      <p>My journey into analytics started with a practical, self-driven approach — learning Power BI, DAX, Excel and Tableau through real projects and building a portfolio that speaks for itself. I didn't wait for the perfect job. I created the work, put it on LinkedIn, and let the quality do the talking.</p>
+
+      <div class="blockquote">"Data should tell a story. Not just show numbers — communicate what they mean, what needs to change, and what to do next."</div>
+
+      <p>That approach worked. My <span class="highlight">Oil &amp; Gas Production &amp; Revenue Dashboard</span> on LinkedIn caught the attention of <span class="highlight">Peter L Smith</span>, General Manager &amp; Partner at International Industrial Partners in Abu Dhabi — becoming my first international client engagement and the founding project of Datara.Insight.</p>
+
+      <p>Alongside building Datara.Insight, I currently serve as <span class="highlight">Research &amp; Technical Support Officer at the Interior Designers Association of Nigeria (IDAN)</span> under the direction of the President, Jacqueline Aki. My role spans administrative support, communications, research and coordination across multiple IDAN initiatives — including the Project Nexus CSR programme and the CEO Roundtable series.</p>
+
+      <p>I'm building toward a full-time freelance analytics practice, with a niche in oil and gas sector data, active clients in the Middle East, and a portfolio designed to demonstrate real-world skills across Power BI, Tableau and Excel.</p>
+    </div>
+
+    <div class="about-cards">
+      <div class="info-card">
+        <div class="info-card-label">Day Role</div>
+        <div class="info-card-value">Research &amp; Technical Support Officer</div>
+        <div class="info-card-sub">Interior Designers Association of Nigeria (IDAN)</div>
+      </div>
+      <div class="info-card accent">
+        <div class="info-card-label" style="color:var(--cyan)">Founder</div>
+        <div class="info-card-value">Lead Data Analyst</div>
+        <div class="info-card-sub">Datara.Insight · Est. 2026</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Email</div>
+        <div class="info-card-value"><a href="mailto:datara.insight@gmail.com" style="color:var(--cyan);text-decoration:none;">datara.insight@gmail.com</a></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Tools &amp; Stack</div>
+        <div class="tool-badges">
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">Tableau</span>
+          <span class="tool-badge">Excel</span>
+          <span class="tool-badge">DAX</span>
+          <span class="tool-badge">SQL</span>
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">Power Query</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">LinkedIn</div>
+        <div class="info-card-value"><a href="https://linkedin.com/in/clementina-chukwu" target="_blank" style="color:var(--cyan);text-decoration:none;">linkedin.com/in/clementina-chukwu</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journey Timeline -->
+  <div style="margin-bottom:40px">
+    <p class="section-eyebrow reveal">My Journey</p>
+    <h2 class="section-heading reveal">How I got here</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2025</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Started Building the Analytics Portfolio</div>
+        <div class="timeline-desc">Began a structured 6-project data analytics portfolio in Power BI and Excel, starting with foundational dashboards and progressively increasing complexity — from KPI visualisation to advanced DAX and supply chain tracking.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2025</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Established Oil &amp; Gas Niche</div>
+        <div class="timeline-desc">Published the Oil &amp; Gas Production &amp; Revenue Dashboard on LinkedIn — a full-year, 5-region production and revenue tracker built in Power BI. The dashboard attracted attention from petroleum engineers and energy professionals across Africa and the Middle East.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-dot" style="background:var(--gold)"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">First International Client — Abu Dhabi</div>
+        <div class="timeline-desc">Peter L Smith, General Manager &amp; Partner at International Industrial Partners in Abu Dhabi, reached out after discovering the Oil &amp; Gas dashboard on LinkedIn — leading to the nanoActiv® Pilot Trial Dashboard engagement, the first paid client project for Datara.Insight.</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-dot" style="background:var(--cyan)"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Founded Datara.Insight</div>
+        <div class="timeline-desc">Formalised the consultancy under the Datara.Insight brand, with a clear specialisation in oil, gas and energy analytics for Africa and the Middle East. Building toward full-time freelance practice via Fiverr, Upwork and direct client outreach.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px" class="reveal">
+    <a href="portfolio.html" class="btn-primary" style="margin-right:16px">View My Portfolio →</a>
+    <a href="contact.html" class="btn-secondary">Get In Touch</a>
+  </div>
+
+</main>
+
+<footer>
+  <a href="index.html" class="foot-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <p class="foot-copy">© 2026 Clementina Chukwu · Datara.Insight · All rights reserved</p>
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

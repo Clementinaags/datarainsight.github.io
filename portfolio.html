@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Clementina Chukwu · Datara.Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.portfolio-intro {
+  font-size: 15px;
+  color: #A0B4CC;
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 56px;
+}
+
+/* Project grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 72px;
+}
+
+.proj-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.proj-card:hover { border-color: rgba(0,204,255,0.2); transform: translateY(-4px); }
+.proj-card.featured { border-color: rgba(0,204,255,0.35); }
+.proj-card.featured:hover { border-color: rgba(0,204,255,0.6); }
+
+.proj-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.proj-num {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proj-card.featured .proj-num { color: var(--cyan); }
+
+.proj-status {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.s-complete { background: rgba(0,230,118,0.1); color: var(--green); border: 1px solid rgba(0,230,118,0.2); }
+.s-soon { background: rgba(255,213,0,0.08); color: var(--gold); border: 1px solid rgba(255,213,0,0.2); }
+
+.proj-icon-area {
+  background: var(--bg2);
+  border-radius: 10px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.proj-card.featured .proj-icon-area { background: rgba(0,204,255,0.06); border-color: rgba(0,204,255,0.2); }
+
+.proj-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.proj-tool {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(0,204,255,0.07);
+  color: var(--cyan);
+  border: 1px solid rgba(0,204,255,0.15);
+}
+
+.proj-title {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.proj-card.featured .proj-title { color: var(--cyan); font-size: 16px; }
+
+.proj-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.proj-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.proj-link {
+  font-size: 12px;
+  color: var(--cyan);
+  text-decoration: none;
+  border: 1px solid rgba(0,204,255,0.25);
+  padding: 5px 14px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.proj-link:hover { background: rgba(0,204,255,0.08); }
+
+.proj-highlight {
+  font-size: 11px;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Live Client Section */
+.live-section {
+  background: var(--bg2);
+  border-radius: 0;
+  padding: 72px 0;
+  margin: 0 -40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.live-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--cyan);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.live-badge-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,77,109,0.1);
+  border: 1px solid rgba(255,77,109,0.25);
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.live-dot-large {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: pulseAnim 1s infinite;
+}
+
+@keyframes pulseAnim {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.3; transform:scale(0.65); }
+}
+
+.live-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.live-client { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.live-desc { font-size: 14px; color: #A0B4CC; line-height: 1.8; margin-bottom: 20px; }
+.live-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.live-tag {
+  font-size: 11px;
+  padding: 4px 12px;
+  background: rgba(0,174,174,0.08);
+  color: var(--teal);
+  border: 1px solid rgba(0,174,174,0.2);
+  border-radius: 20px;
+}
+
+.conf-box {
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 36px;
+  text-align: center;
+}
+.conf-icon { font-size: 40px; margin-bottom: 12px; }
+.conf-title { font-family: var(--font-head); font-weight: 700; font-size: 20px; color: var(--muted); margin-bottom: 8px; }
+.conf-sub { font-size: 13px; color: #3A5A7A; line-height: 1.65; }
+
+/* Testimonials on portfolio page */
+.testimonials-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.tcard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+}
+.tquote {
+  font-size: 14px;
+  color: #A0B4CC;
+  line-height: 1.75;
+  font-style: italic;
+  border-left: 2px solid var(--cyan);
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+.tperson { display: flex; align-items: center; gap: 14px; }
+.tavatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.av-ps { background: rgba(0,204,255,0.12); color: var(--cyan); border: 1px solid rgba(0,204,255,0.2); }
+.av-sa { background: rgba(0,174,174,0.12); color: var(--teal); border: 1px solid rgba(0,174,174,0.2); }
+.tname { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.trole { font-size: 11px; color: var(--muted); }
+
+@media (max-width: 768px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .live-card { grid-template-columns: 1fr; }
+  .live-section { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+  .testimonials-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="company.html">Company</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="btn-hire">Hire Me</a>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-orb" style="width:400px;height:400px;background:rgba(0,204,255,0.05);top:-100px;right:-80px;filter:blur(80px);"></div>
+  <div class="page-header-content">
+    <p class="page-eyebrow">Portfolio</p>
+    <h1 class="page-title">Built from <span class="cyan">scratch.</span><br>Proven in the field.</h1>
+    <p class="page-subtitle">Six projects across Power BI, Tableau and Excel — including an active client engagement with an international oil and gas company in Abu Dhabi.</p>
+  </div>
+</header>
+
+<main class="page-body">
+
+  <p class="portfolio-intro reveal">Every dashboard in this portfolio was built independently — from dataset creation to final design. The Oil &amp; Gas Production &amp; Revenue Dashboard (Project 3) was directly responsible for landing the first paying client, International Industrial Partners in Abu Dhabi.</p>
+
+  <!-- Projects Grid -->
+  <p class="section-eyebrow reveal">Projects</p>
+  <h2 class="section-heading reveal">All Portfolio Work</h2>
+
+  <div class="projects-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-num">Project 01</div>
+        <div class="proj-status s-complete">Complete</div>
+      </div>
+      <div class="proj-icon-area">📈</div>
+      <div class="proj-tools"><span class="proj-tool">Power BI</span></div>
+      <div class="proj-title">Data Analytics Portfolio Project 1</div>
+      <div class="proj-desc">Foundation dashboard demonstrating core Power BI skills — data modelling, relationship management, KPI card design and interactive slicer filtering.</div>
+      <div class="proj-footer">
+        <span style="font-size:12px;color:var(--muted);">Screenshot coming soon</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-num">Project 02</div>
+        <div class="proj-status s-complete">Complete</div>
+      </div>
+      <div class="proj-icon-area">💰</div>
+      <div class="proj-tools"><span class="proj-tool">Power BI</span></div>
+      <div class="proj-title">Budget Performance Dashboard</div>
+      <div class="proj-desc">Financial performance tracker featuring variance analysis, budget vs actual comparisons across categories, and a dynamic executive summary card driven by DAX measures.</div>
+      <div class="proj-footer">
+        <span style="font-size:12px;color:var(--muted);">Screenshot coming soon</span>
+      </div>
+    </div>
+
+    <div class="proj-card featured reveal">
+      <div class="proj-top">
+        <div class="proj-num">Project 03 ⭐ Flagship</div>
+        <div class="proj-status s-complete">Complete</div>
+      </div>
+      <div class="proj-icon-area">🛢️</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Power BI</span>
+        <span class="proj-tool">DAX</span>
+      </div>
+      <div class="proj-title">Oil &amp; Gas Production &amp; Revenue Dashboard</div>
+      <div class="proj-desc">Full-year production, revenue and operational cost dashboard built across 5 regions. Features RANKX product ranking, regional breakdowns, cost vs revenue trends, and a dynamic executive summary. Published on LinkedIn — directly attracted the first international client from Abu Dhabi.</div>
+      <div class="proj-footer">
+        <div class="proj-highlight">🏆 Attracted IIP client — Abu Dhabi, UAE</div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-num">Project 04</div>
+        <div class="proj-status s-complete">Complete</div>
+      </div>
+      <div class="proj-icon-area">📦</div>
+      <div class="proj-tools">
+        <span class="proj-tool">Power BI</span>
+        <span class="proj-tool">DAX</span>
+      </div>
+      <div class="proj-title">Supply Chain &amp; Inventory Tracker</div>
+      <div class="proj-desc">End-to-end supply chain dashboard tracking stock value, fulfillment rates, reorder levels and supplier lead times across 6 product categories. Features advanced RANKX measures, Unicode labelling and a dark navy theme with cyan and teal accents.</div>
+      <div class="proj-footer">
+        <span style="font-size:12px;color:var(--muted);">Screenshot coming soon</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <div class="proj-top">
+        <div class="proj-num">Project 05</div>
+        <div class="proj-status s-complete">Complete</div>
+      </div>
+      <div class="proj-icon-area">🦺</div>
+      <div class="proj-tools"><span class="proj-tool">Tableau</span></div>
+      <div class="proj-title">Oil &amp; Gas HSE Dashboard</div>
+      <div class="proj-desc">Health, Safety &amp; Environment performance dashboard tracking incidents, near misses, compliance rates and lost time injuries (LTIs) across 6 operational sites. Built in Tableau with multi-site filtering and published on Tableau Public.</div>
+      <div class="proj-footer">
+        <a href="https://public.tableau.com/app/profile/clementina.chukwu/viz/OilGasHSEDashboardFY2023ClementinaChukwu/Dashboard1" target="_blank" class="proj-link">View Live on Tableau Public →</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="opacity:0.65">
+      <div class="proj-top">
+        <div class="proj-num">Project 06</div>
+        <div class="proj-status s-soon">Coming Soon</div>
+      </div>
+      <div class="proj-icon-area" style="opacity:0.5">⏳</div>
+      <div class="proj-tools"><span class="proj-tool" style="background:rgba(255,213,0,0.06);color:var(--gold);border-color:rgba(255,213,0,0.2);">Excel</span></div>
+      <div class="proj-title">Project 6 — Coming Soon</div>
+      <div class="proj-desc">Final portfolio project currently in development. An advanced Excel dashboard completing the 6-project portfolio series. Follow on LinkedIn for updates and launch announcement.</div>
+      <div class="proj-footer">
+        <span style="font-size:12px;color:var(--muted);">In development</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Live Client Section -->
+  <div id="live" style="scroll-margin-top:80px">
+    <div class="live-section">
+      <p class="section-eyebrow reveal">Live Client Engagement</p>
+      <h2 class="section-heading reveal">Active project — International Industrial Partners</h2>
+      <div class="live-card reveal">
+        <div>
+          <div class="live-badge-large"><span class="live-dot-large"></span>LIVE PROJECT</div>
+          <div class="live-title">nanoActiv® Pilot Trial<br>Performance Dashboard</div>
+          <div class="live-client">Client: International Industrial Partners (IIP) — Abu Dhabi, UAE &nbsp;·&nbsp; GM &amp; Partner: Peter L Smith</div>
+          <div class="live-desc">A multi-phase Power BI dashboard and Excel scorecard tracking pre-treatment and post-treatment well performance data for the nanoActiv® N₂ Huff-n-Puff pilot trial conducted by Kuwait Oil Company (KOC). The dashboard measures oil rate, water cut, fluid rate, decline curve and incremental oil recovery across 5 wells over a 90-day monitoring period.</div>
+          <div class="live-tags">
+            <span class="live-tag">Power BI</span>
+            <span class="live-tag">Excel</span>
+            <span class="live-tag">Oil &amp; Gas</span>
+            <span class="live-tag">Kuwait</span>
+            <span class="live-tag">EOR</span>
+            <span class="live-tag">KOC</span>
+            <span class="live-tag">Well Performance</span>
+            <span class="live-tag">Huff-n-Puff</span>
+          </div>
+        </div>
+        <div>
+          <div class="conf-box">
+            <div class="conf-icon">🔒</div>
+            <div class="conf-title">Confidential</div>
+            <div class="conf-sub">Dashboard preview not available.<br><br>This project is protected under a signed Non-Disclosure Agreement (NDA) with International Industrial Partners, Abu Dhabi.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <p class="section-eyebrow reveal" style="margin-top:64px">Feedback</p>
+  <h2 class="section-heading reveal">What clients &amp; peers say</h2>
+  <div class="testimonials-row">
+    <div class="tcard reveal">
+      <div class="tquote">"I really saw your work. I just thought it would look really good on LinkedIn. So I was happy I found you."</div>
+      <div class="tperson">
+        <div class="tavatar av-ps">PS</div>
+        <div>
+          <div class="tname">Peter L Smith</div>
+          <div class="trole">General Manager &amp; Partner — International Industrial Partners, Abu Dhabi</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tquote">"I came across your Oil &amp; Gas Production &amp; Revenue Dashboard built with Power BI and I found it very interesting, especially the way you structured the KPIs and the production analysis."</div>
+      <div class="tperson">
+        <div class="tavatar av-sa">SA</div>
+        <div>
+          <div class="tname">Sid Ali Bouchouicha</div>
+          <div class="trole">Petroleum Engineer — Sonatrach, Algeria</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:56px" class="reveal">
+    <a href="contact.html" class="btn-primary">Start a Project With Me →</a>
+  </div>
+
+</main>
+
+<footer>
+  <a href="index.html" class="foot-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <p class="foot-copy">© 2026 Clementina Chukwu · Datara.Insight · All rights reserved</p>
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

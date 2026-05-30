@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datara.Insight — Clementina Chukwu · Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D1B2E;
+    --bg2: #0A0F1E;
+    --card: #16213E;
+    --card2: #111F35;
+    --cyan: #00CCFF;
+    --teal: #00AEAE;
+    --gold: #FFD700;
+    --red: #FF4D6D;
+    --green: #00E676;
+    --text: #E8F0FF;
+    --muted: #6A8BAA;
+    --border: #1E3A5A;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .nav-logo .c { color: var(--cyan); }
+  .nav-logo .t { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+
+  .btn-hire {
+    border: 1.5px solid var(--cyan);
+    color: var(--cyan);
+    padding: 8px 22px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-family: var(--font-body);
+  }
+  .btn-hire:hover { background: var(--cyan); color: var(--bg2); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding: 64px 0 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,204,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,204,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+  .orb-cyan { width: 500px; height: 500px; background: rgba(0,204,255,0.08); top: -120px; right: -100px; }
+  .orb-teal { width: 400px; height: 400px; background: rgba(0,174,174,0.06); bottom: -80px; left: -60px; }
+
+  .hero-inner {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,204,255,0.08);
+    border: 1px solid rgba(0,204,255,0.2);
+    color: var(--cyan);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: pulseAnim 1.5s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulseAnim {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.3; transform:scale(0.65); }
+  }
+
+  .hero-h1 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(44px, 6vw, 68px);
+    line-height: 1.0;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-h1 .cyan { color: var(--cyan); }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    color: #A0B4CC;
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--bg2);
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-secondary {
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .stat-num {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--cyan);
+  }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* Hero right panel */
+  .hero-visual {
+    background: rgba(22,33,62,0.4);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeLeft 0.9s 0.8s forwards;
+  }
+
+  .vis-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .vis-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .kpi-row { display: flex; gap: 10px; }
+
+  .kpi-box {
+    flex: 1;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .kpi-val { font-family: var(--font-head); font-weight: 700; font-size: 18px; color: var(--cyan); }
+  .kpi-unit { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+  .bar-item { margin-bottom: 10px; }
+  .bar-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .bar-track { height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+
+  /* ── SCROLL DOWN HINT ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+  }
+  .scroll-hint span { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: rotate(45deg);
+    animation: bounceDown 1.5s infinite;
+  }
+  @keyframes bounceDown {
+    0%,100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(5px); }
+  }
+
+  /* ── SECTION PREVIEW CARDS ── */
+  .sections-preview {
+    background: var(--bg);
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .preview-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .preview-title {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .preview-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+  .preview-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+
+  .preview-card-icon { font-size: 32px; margin-bottom: 14px; }
+  .preview-card-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .preview-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .preview-card-link { font-size: 12px; color: var(--cyan); margin-top: 16px; display: inline-block; }
+
+  /* ── FEATURED PROJECT STRIP ── */
+  .featured-strip {
+    background: var(--bg2);
+    padding: 80px 40px;
+  }
+
+  .strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-heading {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .featured-card {
+    background: var(--card2);
+    border: 1px solid rgba(0,204,255,0.25);
+    border-left: 3px solid var(--cyan);
+    border-radius: 14px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .fc-badge { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .fc-title { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--cyan); margin-bottom: 10px; line-height: 1.25; }
+  .fc-desc { font-size: 14px; color: #A0B4CC; line-height: 1.75; margin-bottom: 20px; }
+
+  .fc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .fc-tag {
+    font-size: 11px;
+    padding: 4px 12px;
+    background: rgba(0,174,174,0.1);
+    color: var(--teal);
+    border-radius: 20px;
+    border: 1px solid rgba(0,174,174,0.2);
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,77,109,0.1);
+    border: 1px solid rgba(255,77,109,0.25);
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulseAnim 1s infinite;
+  }
+
+  .conf-box {
+    background: var(--bg);
+    border: 1.5px dashed var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+  }
+  .conf-icon { font-size: 32px; margin-bottom: 10px; }
+  .conf-title { font-family: var(--font-head); font-weight: 600; font-size: 16px; color: var(--muted); margin-bottom: 6px; }
+  .conf-sub { font-size: 12px; color: #3A5A7A; line-height: 1.6; }
+
+  /* ── TESTIMONIAL STRIP ── */
+  .testimonial-strip {
+    background: var(--bg);
+    padding: 80px 40px;
+  }
+
+  .tstrip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .tcard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .tcard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+
+  .tcard-quote {
+    font-size: 14px;
+    color: #A0B4CC;
+    line-height: 1.75;
+    font-style: italic;
+    border-left: 2px solid var(--cyan);
+    padding-left: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tcard-person { display: flex; align-items: center; gap: 14px; }
+  .tcard-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .av-ps { background: rgba(0,204,255,0.12); color: var(--cyan); border: 1px solid rgba(0,204,255,0.2); }
+  .av-sa { background: rgba(0,174,174,0.12); color: var(--teal); border: 1px solid rgba(0,174,174,0.2); }
+  .tcard-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .tcard-role { font-size: 11px; color: var(--muted); }
+
+  /* ── CTA STRIP ── */
+  .cta-strip {
+    background: var(--bg2);
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-title { font-family: var(--font-head); font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+  .cta-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--green);
+    margin-bottom: 24px;
+  }
+  .avail-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulseAnim 2s infinite; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .foot-logo { font-family: var(--font-head); font-weight: 800; font-size: 16px; text-decoration: none; }
+  .foot-logo .c { color: var(--cyan); } .foot-logo .t { color: var(--teal); }
+  .foot-copy { font-size: 12px; color: #3A5A7A; }
+  .foot-links { display: flex; gap: 20px; }
+  .foot-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .foot-links a:hover { color: var(--cyan); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Scroll-triggered fade */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; padding: 0 20px; gap: 32px; }
+    .hero-visual { display: none; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .sections-preview { padding: 60px 20px; }
+    .preview-grid { grid-template-columns: 1fr; }
+    .featured-strip, .testimonial-strip, .cta-strip { padding: 60px 20px; }
+    .featured-card { grid-template-columns: 1fr; }
+    .tcard-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="company.html">Company</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="btn-hire">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb-cyan"></div>
+  <div class="orb orb-teal"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="pulse"></span>🛢️ Specialising in Oil &amp; Gas &amp; Energy Analytics</div>
+      <h1 class="hero-h1">Clementina<br><span class="cyan">Chukwu</span></h1>
+      <p class="hero-sub">Founder &amp; Lead Data Analyst — Datara.Insight &nbsp;·&nbsp; Lagos, Nigeria</p>
+      <p class="hero-tagline">Turning complex energy data into clear, actionable insights. Building interactive dashboards and performance scorecards for oil, gas and energy companies across Africa and the Middle East.</p>
+      <div class="hero-btns">
+        <a href="portfolio.html" class="btn-primary">View Portfolio</a>
+        <a href="contact.html" class="btn-secondary">Get In Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">5</div><div class="stat-label">Dashboards Built</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Tools Mastered</div></div>
+        <div><div class="stat-num">1</div><div class="stat-label">International Client</div></div>
+        <div><div class="stat-num" style="font-size:18px;color:var(--teal)">Abu Dhabi</div><div class="stat-label">Current Client Location</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="vis-card">
+        <div class="vis-label">Production Overview — FY2024</div>
+        <div class="kpi-row">
+          <div class="kpi-box"><div class="kpi-val">142.3</div><div class="kpi-unit">MMbbl Total</div></div>
+          <div class="kpi-box"><div class="kpi-val" style="color:var(--teal)">$4.8B</div><div class="kpi-unit">Revenue</div></div>
+          <div class="kpi-box"><div class="kpi-val" style="color:var(--green)">96.2%</div><div class="kpi-unit">Uptime</div></div>
+        </div>
+      </div>
+      <div class="vis-card">
+        <div class="vis-label">Regional Production Share</div>
+        <div class="bar-item"><div class="bar-meta"><span>North Sea</span><span style="color:var(--cyan)">34%</span></div><div class="bar-track"><div class="bar-fill" style="width:34%;background:var(--cyan)"></div></div></div>
+        <div class="bar-item"><div class="bar-meta"><span>Gulf of Mexico</span><span style="color:var(--teal)">28%</span></div><div class="bar-track"><div class="bar-fill" style="width:28%;background:var(--teal)"></div></div></div>
+        <div class="bar-item"><div class="bar-meta"><span>Middle East</span><span style="color:var(--gold)">22%</span></div><div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--gold)"></div></div></div>
+        <div class="bar-item"><div class="bar-meta"><span>West Africa</span><span style="color:var(--red)">16%</span></div><div class="bar-track"><div class="bar-fill" style="width:16%;background:var(--red)"></div></div></div>
+      </div>
+      <div class="vis-card">
+        <div class="vis-label">Live Client Project</div>
+        <div class="live-badge"><span class="live-dot"></span>ACTIVE — IIP Abu Dhabi</div>
+        <div style="font-size:12px;color:var(--muted);">nanoActiv® N₂ Pilot Trial · KOC · 5 Wells</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- SECTION NAVIGATION CARDS -->
+<div style="background:var(--bg)">
+  <div class="sections-preview">
+    <p class="preview-label">Explore</p>
+    <h2 class="preview-title reveal">Get to know Datara.Insight</h2>
+    <div class="preview-grid">
+      <a href="about.html" class="preview-card reveal">
+        <div class="preview-card-icon">👩🏾‍💻</div>
+        <div class="preview-card-title">About Me</div>
+        <div class="preview-card-desc">Who I am, my journey into data analytics, and what drives my passion for energy sector insights.</div>
+        <span class="preview-card-link">Read more →</span>
+      </a>
+      <a href="company.html" class="preview-card reveal">
+        <div class="preview-card-icon">🏢</div>
+        <div class="preview-card-title">Datara.Insight</div>
+        <div class="preview-card-desc">About the consultancy — our mission, focus pillars, and what makes us different in African and Middle East energy analytics.</div>
+        <span class="preview-card-link">Learn more →</span>
+      </a>
+      <a href="skills.html" class="preview-card reveal">
+        <div class="preview-card-icon">📊</div>
+        <div class="preview-card-title">Skills &amp; Tools</div>
+        <div class="preview-card-desc">Power BI, Tableau, DAX, Excel and more — the full toolkit I bring to every data challenge.</div>
+        <span class="preview-card-link">See skills →</span>
+      </a>
+      <a href="portfolio.html" class="preview-card reveal">
+        <div class="preview-card-icon">🛢️</div>
+        <div class="preview-card-title">Portfolio</div>
+        <div class="preview-card-desc">Five completed dashboards including the Oil &amp; Gas project that landed an international client in Abu Dhabi.</div>
+        <span class="preview-card-link">View work →</span>
+      </a>
+      <a href="portfolio.html#live" class="preview-card reveal">
+        <div class="preview-card-icon">🔴</div>
+        <div class="preview-card-title">Live Client Project</div>
+        <div class="preview-card-desc">Active engagement with International Industrial Partners (IIP) — nanoActiv® Pilot Trial Dashboard.</div>
+        <span class="preview-card-link">See details →</span>
+      </a>
+      <a href="contact.html" class="preview-card reveal">
+        <div class="preview-card-icon">✉️</div>
+        <div class="preview-card-title">Work With Me</div>
+        <div class="preview-card-desc">Available for freelance dashboard projects, pilot trial scorecards and energy sector data work.</div>
+        <span class="preview-card-link">Get in touch →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED PROJECT -->
+<section class="featured-strip">
+  <div class="strip-inner">
+    <p class="section-eyebrow reveal">Flagship Work</p>
+    <h2 class="section-heading reveal">The dashboard that started it all</h2>
+    <div class="featured-card reveal">
+      <div>
+        <div class="fc-badge">Project 03 · Power BI &amp; DAX</div>
+        <div class="fc-title">Oil &amp; Gas Production &amp; Revenue Dashboard</div>
+        <div class="fc-desc">Full-year production, revenue and operational cost dashboard built across 5 regions. This dashboard, published on LinkedIn, was directly responsible for attracting Clementina's first international client — International Industrial Partners — from Abu Dhabi, UAE.</div>
+        <div class="fc-tags">
+          <span class="fc-tag">Power BI</span>
+          <span class="fc-tag">DAX</span>
+          <span class="fc-tag">Oil &amp; Gas</span>
+          <span class="fc-tag">Production Analytics</span>
+          <span class="fc-tag">Revenue Tracking</span>
+        </div>
+        <a href="portfolio.html" class="btn-primary" style="display:inline-block">View Full Portfolio →</a>
+      </div>
+      <div>
+        <div class="live-badge"><span class="live-dot"></span>LIVE CLIENT PROJECT</div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)">nanoActiv® Pilot Trial Dashboard</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">International Industrial Partners · Abu Dhabi, UAE</div>
+        <div class="conf-box">
+          <div class="conf-icon">🔒</div>
+          <div class="conf-title">Confidential</div>
+          <div class="conf-sub">Protected under signed NDA. Dashboard preview not available.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-strip">
+  <div class="tstrip-inner">
+    <p class="section-eyebrow reveal">What They Say</p>
+    <h2 class="section-heading reveal">Client &amp; peer highlights</h2>
+    <div class="tcard-grid">
+      <div class="tcard reveal">
+        <div class="tcard-quote">"I really saw your work. I just thought it would look really good on LinkedIn. So I was happy I found you."</div>
+        <div class="tcard-person">
+          <div class="tcard-avatar av-ps">PS</div>
+          <div>
+            <div class="tcard-name">Peter L Smith</div>
+            <div class="tcard-role">General Manager &amp; Partner — International Industrial Partners, Abu Dhabi</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-quote">"I came across your Oil &amp; Gas Production &amp; Revenue Dashboard built with Power BI and I found it very interesting, especially the way you structured the KPIs and the production analysis."</div>
+        <div class="tcard-person">
+          <div class="tcard-avatar av-sa">SA</div>
+          <div>
+            <div class="tcard-name">Sid Ali Bouchouicha</div>
+            <div class="tcard-role">Petroleum Engineer — Sonatrach, Algeria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="cta-inner reveal">
+    <div class="avail-badge"><span class="avail-dot"></span>Available for Freelance Projects</div>
+    <h2 class="cta-title">Let's build something great together</h2>
+    <p class="cta-sub">Whether you need a performance dashboard, a pilot trial scorecard, or a full analytics solution for your energy business — I'd love to hear from you.</p>
+    <a href="contact.html" class="btn-primary">Start a Conversation →</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="foot-logo"><span class="c">Datara</span><span class="t">.Insight</span></a>
+  <p class="foot-copy">© 2026 Clementina Chukwu · Datara.Insight · All rights reserved</p>
+  <div class="foot-links">
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
